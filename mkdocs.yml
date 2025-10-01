@@ -1,0 +1,91 @@
+site_name: LeetCode Solutions
+site_url: https://leetcode.romitsagu.com
+repo_name: NinePiece2/Leetcode
+repo_url: https://github.com/NinePiece2/Leetcode
+copyright: Copyright © 2025 Romit Sagu
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: en
+  font:
+    text: Poppins
+    code: Fira Code
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/code-braces
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  features:
+    - toggle.dark_mode
+    - content.code.select
+    - announce.dismiss
+    - content.code.copy
+    - content.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.follow
+    - toc.integrate
+    - navigation.instant
+    - navigation.tracking
+    - navigation.footer
+    - navigation.indexes
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://GitHub.com/NinePiece2
+    - icon: fontawesome/brands/linkedin
+      link: https://Linkedin.com/in/romit-sagu
+
+extra_css:
+  - overrides.css
+
+plugins:
+  - search
+  - awesome-pages
+  - tags
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: auto
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
+      background: white
+      shadow: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+nav:
+  - Overview: 'README.md'

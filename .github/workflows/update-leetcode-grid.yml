@@ -1,0 +1,43 @@
+name: Update LeetCode Grid
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync Leetcode"]
+    types:
+      - completed
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml requests
+
+      - name: Generate LeetCode README table
+        run: |
+            python ./Scripts/update_project_readme.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add README.md Site_README.md
+          git diff-index --quiet HEAD || git commit -m "[Auto] Update LeetCode README table"
+
+          git fetch origin ${{ github.ref_name }}
+          git rebase origin/${{ github.ref_name }}
+
+          git push origin HEAD:${{ github.ref_name }}

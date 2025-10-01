@@ -1,0 +1,321 @@
+/* =============================================================================
+   LEETCODE SOLUTIONS - CUSTOM STYLES
+   ============================================================================= */
+
+/* Typography and General Styling */
+.md-typeset {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--md-primary-fg-color--light);
+  padding-bottom: 0.5rem;
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--md-accent-fg-color);
+}
+
+/* Header and Navigation */
+.md-header {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.md-header__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.md-tabs__link {
+  font-weight: 500;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Sidebar Navigation */
+.md-nav__title {
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+}
+
+.md-nav__item .md-nav__link {
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  margin: 2px 0;
+  padding: 8px 12px;
+}
+
+.md-nav__item .md-nav__link:hover {
+  background: var(--md-accent-fg-color--transparent);
+  transform: translateX(4px);
+}
+
+.md-nav__item .md-nav__link--active {
+  background: var(--md-primary-fg-color--light);
+  color: var(--md-primary-bg-color);
+  font-weight: 600;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color--light);
+  color: var(--md-primary-bg-color);
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background: var(--md-accent-fg-color--transparent);
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.md-typeset .admonition-title {
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.md-typeset .admonition-title::before {
+  margin-right: 0.5rem;
+}
+
+/* Search Enhancement */
+.md-search__form {
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.md-search__input {
+  font-size: 0.8rem;
+}
+
+.md-search__input::placeholder {
+  opacity: 0.7;
+}
+
+/* Footer */
+.md-footer {
+  background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+}
+
+.md-footer__title {
+  font-weight: 600;
+}
+
+/* Source Repository Link */
+.md-source {
+  font-size: 0.7rem;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.md-source:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Enhancements */
+@media screen and (max-width: 76.1875em) {
+  .md-nav__source {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .md-typeset {
+    font-size: 0.75rem;
+  }
+  
+  .md-typeset h1 {
+    font-size: 1.75rem;
+  }
+  
+  .md-typeset h2 {
+    font-size: 1.35rem;
+  }
+}
+
+/* Tabs Enhancement */
+.md-typeset .tabbed-set {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+.md-typeset .tabbed-labels {
+  background: var(--md-default-bg-color--light);
+}
+
+.md-typeset .tabbed-labels > label {
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .tabbed-labels > label:hover {
+  background: var(--md-accent-fg-color--transparent);
+}
+
+.md-typeset .tabbed-content {
+  padding: 1.5rem;
+}
+
+/* Task Lists */
+.md-typeset .task-list-item {
+  list-style: none;
+  margin-left: 0;
+}
+
+.md-typeset .task-list-control {
+  margin-right: 0.5rem;
+}
+
+/* Difficulty Badges - Custom styling for LeetCode problems */
+.difficulty-easy {
+  background: #00af9b;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.25rem 0;
+}
+
+.difficulty-medium {
+  background: #ffb800;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.25rem 0;
+}
+
+.difficulty-hard {
+  background: #ff375f;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.25rem 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+.md-nav__link:focus,
+.md-tabs__link:focus,
+button:focus {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+/* Loading animation for search */
+.md-search__form::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--md-default-fg-color--light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Content area improvements */
+.md-content {
+  padding-bottom: 2rem;
+}
+
+.md-typeset p {
+  margin-bottom: 1rem;
+}
+
+.md-typeset ul, .md-typeset ol {
+  margin-bottom: 1rem;
+}
+
+.md-typeset li {
+  margin-bottom: 0.25rem;
+}
+
+.md-content {
+  max-width: 100% !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.tag {
+  display: inline-block;
+  background: #00af9b;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+}
+
+li.md-nav__item.md-nav__item--active{
+    margin-top: 0.5rem
+}
