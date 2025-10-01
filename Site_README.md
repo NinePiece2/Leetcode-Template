@@ -38,7 +38,7 @@ This is a repo to store my leetcode solutions but I went a bit Schizo with it an
 ```
 
 **Note**
-The table of Solutions is autmatically added to the end of the two READMEs if it doesn't already exist. 
+The table of Solutions is autmatically added to the end of the two READMEs if it doesn't already exist. Also the `README.md` is shown only on the GitHub and the `Site_README.md` is used for the website if you want to make different chanegs to them.
 
 
 ### Workflow Steps
