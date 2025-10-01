@@ -20,6 +20,8 @@
 
 This is a repo to store my leetcode solutions but I went a bit Schizo with it and it pulls the leetcode solutions, creates READMEs with the problema and solution and then converts it into an Mkdocs website hosted on GitHub Pages.
 
+Working demo [here](https://github.com/NinePiece2/Leetcode)
+
 ### Usage Steps
 1. Copy this template Repo.
 2. Add 2 Repo Secrets called LEETCODE_CSRF_TOKEN and LEETCODE_SESSION from the leetcode-sync [documentation](https://github.com/joshcai/leetcode-sync?tab=readme-ov-file#how-to-use)
