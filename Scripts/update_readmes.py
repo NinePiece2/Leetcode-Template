@@ -93,6 +93,10 @@ def tag_badge(tag: str) -> str:
     """Render topic tags as small gray badges."""
     return f'<span style="background-color:#607D8B; color:white; padding:2px 6px; border-radius:6px; font-size:0.75em; margin-right:0.2rem;">{tag}</span>'
 
+def normalize_slug(slug: str) -> str:
+    """Normalize slug by replacing multiple consecutive dashes with single dashes."""
+    return re.sub(r'-+', '-', slug)
+
 for prob_folder in sorted(os.listdir(SRC_DIR)):
     prob_path = Path(SRC_DIR) / prob_folder
     if not prob_path.is_dir():
@@ -101,8 +105,9 @@ for prob_folder in sorted(os.listdir(SRC_DIR)):
     match = re.match(r'(\d+)-(.+)', prob_folder)
     if not match:
         continue
-    number, title_slug = match.groups()
+    number, raw_title_slug = match.groups()
     number = str(int(number))
+    title_slug = normalize_slug(raw_title_slug)  # Normalize the slug
     title = ' '.join([smart_capitalize(w) for w in title_slug.split('-')])
 
     readme_path = prob_path / "README.md"

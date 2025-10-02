@@ -128,6 +128,10 @@ def update_readme(readme_path, rows_str):
     readme_path.write_text(updated_text)
 
 
+def normalize_slug(slug: str) -> str:
+    """Normalize slug by replacing multiple consecutive dashes with single dashes."""
+    return re.sub(r'-+', '-', slug)
+
 def main():
     problems = []
 
@@ -139,8 +143,9 @@ def main():
         match = re.match(r"(\d+)-(.+)", folder)
         if not match:
             continue
-        folder_number, slug = match.groups()
+        folder_number, raw_slug = match.groups()
         folder_number = str(int(folder_number))
+        slug = normalize_slug(raw_slug)  # Normalize the slug
         title = f"{folder_number}. " + " ".join([smart_capitalize(w) for w in slug.split("-")])
 
         difficulty, tags = fetch_question_details(slug)
