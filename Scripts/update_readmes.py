@@ -1,5 +1,6 @@
 import os
 import re
+import json
 from pathlib import Path
 import shutil
 import yaml
@@ -8,6 +9,19 @@ import requests
 
 SRC_DIR = "Solutions"
 DST_DIR = "docs/solutions"
+
+CACHE_FILE = Path(".leetcode_cache.json")
+
+# Load cache
+if CACHE_FILE.exists():
+    with open(CACHE_FILE, "r") as f:
+        QUESTION_CACHE = json.load(f)
+else:
+    QUESTION_CACHE = {}
+
+def save_cache():
+    with open(CACHE_FILE, "w") as f:
+        json.dump(QUESTION_CACHE, f, indent=2)
 
 # Clean previous docs
 if Path(DST_DIR).exists():
@@ -28,7 +42,10 @@ def smart_capitalize(word: str) -> str:
     return word.capitalize()
 
 def fetch_question_details(slug: str):
-    """Fetch difficulty and tags from LeetCode GraphQL API."""
+    """Fetch difficulty and tags from cache or API."""
+    if slug in QUESTION_CACHE:
+        return QUESTION_CACHE[slug]["difficulty"], QUESTION_CACHE[slug]["tags"]
+
     url = "https://leetcode.com/graphql"
     query = {
         "query": """
@@ -54,6 +71,8 @@ def fetch_question_details(slug: str):
             return "", []
         difficulty = question.get("difficulty", "")
         tags = [tag.get("name") for tag in question.get("topicTags", []) if tag.get("name")]
+        QUESTION_CACHE[slug] = {"difficulty": difficulty, "tags": tags}
+        save_cache()
         return difficulty, tags
     except Exception as e:
         print(f"❌ Failed to fetch question details for {slug}: {e}")

@@ -25,9 +25,22 @@ jobs:
         run: |
           pip install pyyaml requests
 
+      - name: Restore LeetCode API cache
+        uses: actions/cache@v4
+        with:
+          path: .leetcode_cache.json
+          key: leetcode-cache
+
       - name: Generate LeetCode README table
         run: |
             python ./Scripts/update_project_readme.py
+      
+      - name: Save updated cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .leetcode_cache.json
+          key: leetcode-cache
 
       - name: Commit and push changes
         run: |
