@@ -10,41 +10,79 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      contains(github.event.workflow_run.head_commit.message, 'Solutions/')
+    if: github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Restore last processed commit
+        id: last_commit_cache
+        uses: actions/cache@v4
+        with:
+          path: .last_leetcode_commit
+          key: leetcode-last-commit
+
+      - name: Load last processed commit SHA
+        id: last_commit
+        run: |
+          if [ -f .last_leetcode_commit ]; then
+            echo "last=$(cat .last_leetcode_commit)" >> $GITHUB_OUTPUT
+          else
+            echo "last=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for Solutions/ changes since last run
+        id: changes
+        run: |
+          git fetch --depth=100 origin ${{ github.ref_name }}
+
+          if [ -n "${{ steps.last_commit.outputs.last }}" ]; then
+            echo "Comparing from ${{ steps.last_commit.outputs.last }} to HEAD"
+            git diff --name-only ${{ steps.last_commit.outputs.last }}..HEAD > files.txt
+          else
+            echo "No previous commit recorded, checking current HEAD only"
+            git show --name-only --pretty="" HEAD > files.txt
+          fi
+
+          if grep -q '^Solutions/' files.txt; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up Python
+        if: steps.changes.outputs.changed == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
       - name: Install dependencies
+        if: steps.changes.outputs.changed == 'true'
         run: |
           pip install pyyaml requests
 
       - name: Restore LeetCode API cache
+        if: steps.changes.outputs.changed == 'true'
         uses: actions/cache@v4
         with:
           path: .leetcode_cache.json
           key: leetcode-cache
 
       - name: Generate LeetCode README table
+        if: steps.changes.outputs.changed == 'true'
         run: |
-            python ./Scripts/update_project_readme.py
-      
+          python ./Scripts/update_project_readme.py
+
       - name: Save updated cache
-        if: always()
+        if: always() && steps.changes.outputs.changed == 'true'
         uses: actions/cache/save@v4
         with:
           path: .leetcode_cache.json
           key: leetcode-cache
 
       - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -56,3 +94,8 @@ jobs:
           git rebase origin/${{ github.ref_name }}
 
           git push origin HEAD:${{ github.ref_name }}
+
+      - name: Save last processed commit
+        if: always() && steps.changes.outputs.changed == 'true'
+        run: |
+          git rev-parse HEAD > .last_leetcode_commit
