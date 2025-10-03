@@ -53,7 +53,7 @@ The table of Solutions is autmatically added to the end of the two READMEs if it
 ## My Leetcode Stats
 
 <div align="center">
-    <img src="https://leetcard.jacoblin.cool/NinePiece2?theme=dark" height="165" alt="leetcode stats"/>
+    <img src="https://github-readme-leetcode-card.romitsagu.com/NinePiece2?theme=dark" height="165" alt="leetcode stats"/>
 </div>
 
 ## Table of my Solutions
