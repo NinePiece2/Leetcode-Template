@@ -2,13 +2,10 @@ name: Update and Build LeetCode Site
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'Site_README.md'
-      - 'mkdocs.yml'
-      - 'Style/**'
+  workflow_run:
+    workflows: ["Update LeetCode Grid"]
+    types:
+      - completed
 
 concurrency:
   group: ${{ github.workflow }} - ${{ github.ref }}
@@ -80,7 +77,7 @@ jobs:
       - name: Prepare docs folder
         run: |
           cp Style/overrides.css docs/
-          echo "leetcode.romitsagu.com" > ./docs/CNAME
+          #echo "leetcode.romitsagu.com" > ./docs/CNAME # Uncomment if using custom domain
           cp Site_README.md docs/README.md
 
       - name: Build site

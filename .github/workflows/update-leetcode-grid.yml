@@ -1,5 +1,9 @@
 name: Update LeetCode Grid
 
+permissions:
+  contents: write
+  actions: write
+
 on:
   workflow_dispatch:
   workflow_run:
