@@ -42,7 +42,7 @@ jobs:
         run: python ./Scripts/update_readmes.py
 
       - name: Upload docs and mkdocs.yml as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: mkdocs-docs
           path: |
