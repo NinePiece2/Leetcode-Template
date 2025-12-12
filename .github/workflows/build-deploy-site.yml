@@ -31,7 +31,7 @@ jobs:
           pip install pyyaml requests
       
       - name: Restore LeetCode API cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: .leetcode_cache.json
           key: leetcode-cache-latest
